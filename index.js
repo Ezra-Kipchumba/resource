@@ -1,31 +1,29 @@
-fetch("https://api.teleport.org/api/cities/")
-	.then(response => response.json())
-	.then(randomCity)
-	.catch(err => console.error(err));
+const rootElement = document.getElementById("output");
+
+fetch("https://api.teleport.org/api/cities/", {
+    method: "GET",
+})
+    .then(response => response.json())
+    .then((result) => {
+        // console.log(result)
+        const myArray = result._embedded["city:search-results"]
+        // console.log(myArray)
+        myArray.forEach(myArray => {
+            const parentDiv = document.createElement("div");
+            const childP = document.createElement("p");
+
+            // populating childP with data
+            childP.innerHTML = myArray;
+
+            // append to parentDiv
+            parentDiv.appendChild(childP);
+        })
+    })
+    .catch(err => console.log(err));
 
 const cityValue = document.getElementById("btn").addEventListener("click", getCity);
 
-function getCity(){
-    console.log (document.getElementById("text-typo").value)
+function getCity() {
+    console.log(document.getElementById("text-typo").value)
 }
-console.log(getCity())
-
-// const cityFound = document.getElementById("city");
-
-function randomCity(data) {
-    myArray = data._embedded["city:search-results"];
-}
-
-// myArray.map((x) => {
-//     for (let i = 0; i< 25; i++){
-//         let x = myArray[a];
-//         if (data._embedded["city:search-results"][x] === cityValue){
-//             return true;
-//         }
-//     }
-// });
-
-let empty = "" ;
-myArray.map((values)=>{
-    console.log(values)
-})
+// console.log(getCity())

@@ -31,3 +31,8 @@ u{
     padding: 6px;
     margin-top: 10px;
 }
+#output{
+    color: white;
+    background-color: crimson;
+    margin: 4%;
+}
